@@ -1,4 +1,4 @@
-const CryptoJS = require("crypto-js");
+const CryptoJS = require('crypto-js');
 
 const resultsData = {
     "066894606": {
