@@ -1,84 +1,26 @@
-const resultsData = {
-    "066894606": {
-        name: "Биляна Карушкова",
-        rawScores: {
-            verbal: "24/30 точки",
-            quantitative: "23/30 точки",
-            abstract: "21/30 точки",
-            memory: "29/30 точки"
-        },
-        convertedScores: {
-            verbal: 136,
-            quantitative: 132,
-            abstract: 124,
-            memory: 156
-        },
-        totalRawScore: 97,
-        compositeConvertedScore: 137,
-        iq: "127.75 (мин. 120)"
-    },
-    "019888824": {
-        name: "Михаел Бекяров",
-        rawScores: {
-            verbal: "16/30 точки",
-            quantitative: "17/30 точки",
-            abstract: "16/30 точки",
-            memory: "29/30 точки"
-        },
-        convertedScores: {
-            verbal: 104,
-            quantitative: 108,
-            abstract: 104,
-            memory: 156
-        },
-        totalRawScore: 78,
-        compositeConvertedScore: 119,
-        iq: "113.50 (мин. 120)"
-    },
-    "963410930": {
-        name: "Озан Сербест",
-        rawScores: {
-            verbal: "20.5/30 точки",
-            quantitative: "19/30 точки",
-            abstract: "20/30 точки",
-            memory: "30/30 точки"
-        },
-        convertedScores: {
-            verbal: 122,
-            quantitative: 116,
-            abstract: 120,
-            memory: 160
-        },
-        totalRawScore: 89.5,
-        compositeConvertedScore: 129.5,
-        iq: "122.12 (мин. 120)"
-    },
-    "544265855": {
-        name: "Никола Величков",
-        rawScores: {
-            verbal: "14/30 точки",
-            quantitative: "19/30 точки",
-            abstract: "21/30 точки",
-            memory: "30/30 точки"
-        },
-        convertedScores: {
-            verbal: 96,
-            quantitative: 116,
-            abstract: 124,
-            memory: 160
-        },
-        totalRawScore: 84,
-        compositeConvertedScore: 124,
-        iq: "118.00 (мин. 120)"
-    }
+const secretKey = "your-secret-key";
+
+// Encrypted results data
+const encryptedResultsData = {
+    "066894606": "U2FsdGVkX1+1PzqP8U+NOnOa/dxyBXjAEQBSkS2zbrvLzAIpTExHGjvhvFokbm5mXMs5iW+DJkwoEwnl3u3DJw==",
+    "019888824": "U2FsdGVkX1/9b1Fz8HzH2eBuxWbB8KUn2b/60pKjilBEV9vvh5Z3otyoNfpTpxS+y0OTY1V6B+WORLeP/UQ/4g==",
+    "963410930": "U2FsdGVkX1/sRLPckEDJBFx4GmrgE1CpRoxp0DgglDoU1CfPjGNHMVR/S2jbkiYZ7nXEdOD4tPm0AtI3D8gWEQ==",
+    "544265855": "U2FsdGVkX18a4XlIVBN7M8NOUXG+ZtHS0K36r2Fk6LMmD7k72OHf5cH8RCrH9TgfbMtE4b/RzrBSa8sOqXYpYQ=="
 };
+
+function decryptData(encryptedData, key) {
+    const bytes = CryptoJS.AES.decrypt(encryptedData, key);
+    const decryptedData = bytes.toString(CryptoJS.enc.Utf8);
+    return JSON.parse(decryptedData);
+}
 
 function showResults() {
     const serialNumber = document.getElementById('serialNumber').value;
-    const result = resultsData[serialNumber];
+    const encryptedData = encryptedResultsData[serialNumber];
     const resultsDiv = document.getElementById('results');
     
-    if (result) {
+    if (encryptedData) {
+        const result = decryptData(encryptedData, secretKey);
         resultsDiv.innerHTML = `
             <h2>Резултати за: ${result.name}</h2>
             <p><strong>Суров Резултат:</strong></p>
@@ -89,7 +31,7 @@ function showResults() {
             <p><strong>Преобразуван Резултат:</strong></p>
             <p>Вербално мислене: ${result.convertedScores.verbal}</p>
             <p>Количествено разсъждение: ${result.convertedScores.quantitative}</p>
-            <p>Абстрактно/Визуално разсъждение: ${result.convertedScores.abstract}</p>
+            <p>Абстрактно/Визуално разсъждание: ${result.convertedScores.abstract}</p>
             <p>Работна памет: ${result.convertedScores.memory}</p>
             <p><strong>Общ Суров Резултат:</strong> ${result.totalRawScore}</p>
             <p><strong>Композитен преобразуван резултат:</strong> ${result.compositeConvertedScore}</p>
