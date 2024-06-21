@@ -2,7 +2,7 @@ const CryptoJS = require('crypto-js');
 
 const resultsData = {
     "066894606": {
-        name: "Биляна",
+        name: "Биляна Карушкова",
         rawScores: {
             verbal: "24/30 точки",
             quantitative: "23/30 точки",
@@ -20,7 +20,7 @@ const resultsData = {
         iq: "127.75 (мин. 120)"
     },
     "019888824": {
-        name: "Мишо",
+        name: "Мишо Бекяров",
         rawScores: {
             verbal: "16/30 точки",
             quantitative: "17/30 точки",
@@ -38,7 +38,7 @@ const resultsData = {
         iq: "113.50 (мин. 120)"
     },
     "963410930": {
-        name: "Озан",
+        name: "Озан Сербест",
         rawScores: {
             verbal: "20.5/30 точки",
             quantitative: "19/30 точки",
@@ -56,7 +56,7 @@ const resultsData = {
         iq: "122.12 (мин. 120)"
     },
     "544265855": {
-        name: "Никола",
+        name: "Никола Величков",
         rawScores: {
             verbal: "14/30 точки",
             quantitative: "19/30 точки",
