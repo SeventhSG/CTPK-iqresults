@@ -20,7 +20,7 @@ const resultsData = {
         iq: "127.75 (мин. 120)"
     },
     "019888824": {
-        name: "Мишо Бекяров",
+        name: "Михаел Бекяров",
         rawScores: {
             verbal: "16/30 точки",
             quantitative: "17/30 точки",
